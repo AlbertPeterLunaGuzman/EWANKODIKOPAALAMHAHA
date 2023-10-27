@@ -16,33 +16,26 @@ public class NodeTest {
 
 	public static void main(String[] args){
             //Step 1: Create a binary tree (NOT a BST) using the following data: 55, 23, 11, 75, 50, 15, 25, 60, 63, 69. 
-                BinaryTree tree = new BinaryTree();
-            
-                int[] a = {55, 23, 11, 75, 50, 15, 25, 60, 63, 69};
-                int[] A = {4, 2, 6, 1, 3, 5, 7};
-            
-                for(int i = 0; i < a.length; i++){
-                    tree.addNode(a[i]);
-                }
+                BinaryTree tree = balancedBinaryTree();
                 
             //Step 2: Print the number of nodes in the binary tree.
                 System.out.println("Number of Nodes: " + tree.countNodes());
                 
             //Step 3: Print the values in-order traversal.
-                System.out.print("This is the in Order sequence:   ");
-                    tree.inorder();
+                System.out.print("This is the in Order sequence:       ");
+                    tree.printInOrder();
 
             //Step 4: Print the values in pre-order traversal.
-                System.out.print("\nThis is the Pre Order sequence:  ");
-                    tree.preOrder();
+                System.out.print("\nThis is the Pre Order sequence:      ");
+                    tree.printPreOrder();
 
             //Step 5: Print the values in post-order traversal.
-                System.out.print("\nThis is the Post Order sequence: ");
-                    tree.postOrder();
+                System.out.print("\nThis is the Post Order sequence:     ");
+                    tree.printPostOrder();
 
             //Step 6: Print the values in level order traversal.
                 System.out.print("\nThis is the In Level Order sequence: ");
-                    tree.levelOrderTraversal();
+                    tree.printLevelOrder();
                 
             //Step 7: Print the height of the binary tree.
                 System.out.println("\nHeight of the tree: " + tree.getHeight());
@@ -72,17 +65,17 @@ public class NodeTest {
             System.out.println("\n                  REPEATING STEPS 2 TO 12.");
                 System.out.println("Number of Nodes: " + tree.countNodes());
                 
-                System.out.print("This is the in Order sequence:   ");
-                    tree.inorder();
+                System.out.print("This is the in Order sequence:       ");
+                    tree.printInOrder();
 
-                System.out.print("\nThis is the Pre Order sequence:  ");
-                    tree.preOrder();
+                System.out.print("\nThis is the Pre Order sequence:      ");
+                    tree.printPreOrder();
 
-                System.out.print("\nThis is the Post Order sequence: ");
-                    tree.postOrder();
+                System.out.print("\nThis is the Post Order sequence:     ");
+                    tree.printPostOrder();
 
                 System.out.print("\nThis is the In Level Order sequence: ");
-                    tree.levelOrderTraversal();
+                    tree.printLevelOrder();
                 
                 System.out.println("\nHeight of the tree: " + tree.getHeight());
         
@@ -106,17 +99,17 @@ public class NodeTest {
             
                 System.out.println("Number of Nodes: " + tree.countNodes());
                 
-                System.out.print("This is the in Order sequence:   ");
-                    tree.inorder();
+                System.out.print("This is the in Order sequence:       ");
+                    tree.printInOrder();
 
-                System.out.print("\nThis is the Pre Order sequence:  ");
-                    tree.preOrder();
+                System.out.print("\nThis is the Pre Order sequence:      ");
+                    tree.printPreOrder();
 
-                System.out.print("\nThis is the Post Order sequence: ");
-                    tree.postOrder();
+                System.out.print("\nThis is the Post Order sequence:     ");
+                    tree.printPostOrder();
 
                 System.out.print("\nThis is the In Level Order sequence: ");
-                    tree.levelOrderTraversal();
+                    tree.printLevelOrder();
                 
                 System.out.println("\nHeight of the tree: " + tree.getHeight());
         
@@ -137,8 +130,61 @@ public class NodeTest {
             //Step 18: Print the sum of the nodes in the binary tree.
                 System.out.println("Sum of Nodes: " + tree.getNodeSum());
         }
-    
+
+    public static BinaryTree balancedBinaryTree(){
+                    BinaryTree tree = new BinaryTree();
+                
+                    tree.root = new Node(55); 
+                    
+                    tree.root.left = new Node(23);
+                    tree.root.right = new Node(75);
+                    
+                    tree.root.left.left = new Node(11);
+                    tree.root.left.right = new Node(60);
+                    tree.root.left.left.right = new Node(15);
+                    tree.root.left.right.right = new Node(25);
+                    
+                    tree.root.right.left = new Node(50);
+                    tree.root.right.right = new Node(69);
+                    
+                    tree.root.right.right.left = new Node(63);
+        return tree;
+    } 
         
+        
+//    public static BinaryTree fullBinaryTree(){
+//    //            55
+//    //          /    \
+//    //        23     11
+//    //       / \    /  \
+//    //      75  50  15  25
+//    //     /   /
+//    //    60   63
+//    //   /  
+//    //  69
+//
+//        BinaryTree tree = new BinaryTree();
+//            tree.root = new Node(55);
+//            
+//            tree.root.left = new Node(23);
+//            tree.root.right = new Node(75);
+//            
+//            //Left Nodes
+//            tree.root.left.left = new Node( 11);
+//            tree.root.left.left.left = new Node(15);
+//            tree.root.left.left.right = new Node(25);
+//            
+//            tree.root.left.right = new Node(50);
+//            tree.root.left.right.left = new Node(63);
+//            tree.root.left.right.right = new Node(69);
+//            
+//            //Right Nodes
+//            tree.root.right.left = new Node(60);
+//            
+//        return tree;
+//    } 
+//        
+    
     public static void TESTINGINMOMUNADITOWAGKAMAKULET(){
                 //binaryTreeProgram();
             //completeBinaryTreeProgram();
@@ -162,10 +208,10 @@ public class NodeTest {
 //          2     6
 //         / \   / \
 //        1   3 5   7
-//In Order:   1 2 3 4 5 6 7
-//Pre Order:  4 2 1 3 6 5 7 
-//Post Order: 1 3 2 5 7 6 4
-
+//In Order:    1 2 3 4 5 6 7
+//Pre Order:   4 2 1 3 6 5 7 
+//Post Order:  1 3 2 5 7 6 4
+//Level Order: 4 2 6 1 3 5 7
 
 //ETO YUNG ORIGINAL
 //                      55
@@ -246,19 +292,19 @@ public class NodeTest {
                 
             //Step 3: Print mo In-Order sequence.
                 System.out.print("This is the in Order sequence:   ");
-                    tree.inorder();
+                    tree.printInOrder();
 
             //Step 4: Print mo naman sa Pre-Order sequence.
                 System.out.print("\nThis is the Pre Order sequence:  ");
-                    tree.preOrder();
+                    tree.printPreOrder();
 
             //Step 5: Tas print mo naman sa Post-Order sequence.
                 System.out.print("\nThis is the Post Order sequence: ");
-                    tree.postOrder();
+                    tree.printPostOrder();
 
             //Step 6: Print mo naman sa In Level Order sequence.
                 System.out.print("\nThis is the In Level Order sequence: ");
-                    tree.levelOrderTraversal();
+                    tree.printLevelOrder();
                 
             //Step 7: Print mo yung height.
                 System.out.println("\nHeight of the tree: " + tree.getHeight());
@@ -287,16 +333,16 @@ public class NodeTest {
                 System.out.println("Number of Nodes: " + tree.countNodes());
                 
                 System.out.print("This is the in Order sequence:   ");
-                    tree.inorder();
+                    tree.printInOrder();
 
                 System.out.print("\nThis is the Pre Order sequence:  ");
-                    tree.preOrder();
+                    tree.printPreOrder();
 
                 System.out.print("\nThis is the Post Order sequence: ");
-                    tree.postOrder();
+                    tree.printPostOrder();
 
                 System.out.print("\nThis is the In Level Order sequence: ");
-                    tree.levelOrderTraversal();
+                    tree.printLevelOrder();
                 
                 System.out.println("\nHeight of the tree: " + tree.getHeight());
         
@@ -319,16 +365,16 @@ public class NodeTest {
                 System.out.println("Number of Nodes: " + tree.countNodes());
                 
                 System.out.print("This is the in Order sequence:   ");
-                    tree.inorder();
+                    tree.printInOrder();
 
                 System.out.print("\nThis is the Pre Order sequence:  ");
-                    tree.preOrder();
+                    tree.printPreOrder();
 
                 System.out.print("\nThis is the Post Order sequence: ");
-                    tree.postOrder();
+                    tree.printPostOrder();
 
                 System.out.print("\nThis is the In Level Order sequence: ");
-                    tree.levelOrderTraversal();
+                    tree.printLevelOrder();
                 
                 System.out.println("\nHeight of the tree: " + tree.getHeight());
         
@@ -350,4 +396,5 @@ public class NodeTest {
                 System.out.println("Sum of Nodes: " + tree.getNodeSum());
     }
 
+    
 }
