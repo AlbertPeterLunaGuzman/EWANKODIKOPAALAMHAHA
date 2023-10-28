@@ -6,15 +6,13 @@ package nodetest;
 import java.util.*;
 /**
  *
- * @author STAR
+ * @author guzmanal
  */
 public class Node {
-
-	int data;
+    String data;
 
 	Node left, right;
-	public Node(int item)
-	{
+	public Node(String item) {
 		data = item;
 		left = right = null;
 	}
@@ -27,7 +25,7 @@ class BinaryTree {
 	Node root;
 	
     // Constructors
-	BinaryTree(int key) { 
+	BinaryTree(String key) { 
             root = new Node(key); 
         }
         
@@ -92,14 +90,14 @@ class BinaryTree {
 //CRUD OPERATIONS
         
     // Add a node to the tree
-        void addNode(int value) {
+        void addNode(String value) {
             Node newNode = new Node(value);
             if (this.root == null) {
                 this.root = newNode;
             } else {
                 Node currentNode = this.root;
                 while (true) {
-                    if (value < currentNode.data) {
+                    if (value.compareToIgnoreCase(currentNode.data) < 0) {
                         if (currentNode.left == null) {
                             currentNode.left = newNode;
                             break;
@@ -119,7 +117,7 @@ class BinaryTree {
         }
 
         // Remove a node from the tree
-        boolean removeNode(int value) {
+        boolean removeNode(String value) {
             Node currentNode = this.root;
             Node parentNode = null;
             boolean isLeft = false;
@@ -127,7 +125,7 @@ class BinaryTree {
             // Find the node to remove
             while (currentNode != null && currentNode.data != value) {
                 parentNode = currentNode;
-                if (value < currentNode.data) {
+                if (value.compareToIgnoreCase(currentNode.data) < 0) {
                     currentNode = currentNode.left;
                     isLeft = true;
                 } else {
@@ -226,19 +224,19 @@ class BinaryTree {
         }
 
     // Function to delete a node with a given key from the binary tree
-        public void delete(int data) {
+        public void delete(String data) {
             root = deleteNode(root, data);
         }
 
     // Recursive helper function to delete a node with a given key
-        private Node deleteNode(Node root, int key) {
+        private Node deleteNode(Node root, String key) {
             if (root == null)
                 return root;
 
             // Recursively search for the node to be deleted
-            if (key < root.data)
+            if (key.compareToIgnoreCase(root.data) < 0)
                 root.left = deleteNode(root.left, key);
-            else if (key > root.data)
+            else if (key.compareToIgnoreCase(root.data) > 0)
                 root.right = deleteNode(root.right, key);
             else {
                 // Node with only one  or no 
@@ -258,11 +256,11 @@ class BinaryTree {
 
 
     // Function to find the minimum value in a binary tree
-    public int getMinimumValue(){
+    public String getMinimumValue(){
         return minimum(root);
     }
-    private int minimum(Node root) {
-        int minValue = root.data;
+    private String minimum(Node root) {
+        String minValue = root.data;
             while (root.left != null) {
             minValue = root.left.data;
             root = root.left;
@@ -271,20 +269,20 @@ class BinaryTree {
     }
 
     // Utility function to insert a node into the binary tree
-        public void insert(int key) {
+        public void insert(String key) {
             root = insertNode(root, key);
         }
 
     // Recursive helper function to insert a node into the binary tree
-        private Node insertNode(Node root, int key) {
+        private Node insertNode(Node root, String key) {
             if (root == null) {
                 root = new Node(key);
             return root;
             }
 
-            if (key < root.data)
+            if (key.compareToIgnoreCase(root.data) < 0)
                 root.left = insertNode(root.left, key);
-            else if (key > root.data)
+            else if (key.compareToIgnoreCase(root.data) > 0)
                 root.right = insertNode(root.right, key);
 
             return root;
@@ -328,11 +326,11 @@ class BinaryTree {
     }
 
     //Testingin yung node searcher kung gumagana
-    public int nodeSearcher(int searchData) {
+    public int nodeSearcher(String searchData) {
         return searchLevel(root, searchData, 1);
     }
 
-    private int searchLevel(Node node, int searchData, int level) {
+    private int searchLevel(Node node, String searchData, int level) {
         if (node == null) {
             return -1; 
         }
@@ -361,22 +359,22 @@ class BinaryTree {
             printLevel(node.right, level - 1);
         }
     }
-    
-    //Testingin yung getSum
-    public int sum(Node root) {
-        if (root == null) {
-            return 0; // Return 0 for an empty tree
-        }
-        int mgaLeftNodes = sum(root.left);
-        int mgaRightNodes = sum(root.right);
-
-        return root.data + mgaLeftNodes + mgaRightNodes;
-    }
-
-    // Update the getNodeSum method to call the modified sum method
-    public int getNodeSum() {
-        return sum(root);
-    }
+//    
+//    //Testingin yung getSum
+//    public int sum(Node root) {
+//        if (root == null) {
+//            return 0; // Return 0 for an empty tree
+//        }
+//        int mgaLeftNodes = sum(root.left);
+//        int mgaRightNodes = sum(root.right);
+//
+//        return root.data + mgaLeftNodes + mgaRightNodes;
+//    }
+//
+//    // Update the getNodeSum method to call the modified sum method
+//    public int getNodeSum() {
+//        return sum(root);
+//    }
 
 
     public int getHeight(){
@@ -467,4 +465,3 @@ class BinaryTree {
             return false;
         }
 }
-
